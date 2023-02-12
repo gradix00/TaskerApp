@@ -1,11 +1,9 @@
-﻿using System.Net;
-using System;
+﻿using ewads_mvvm.Model.Helpers;
 using MySqlConnector;
+using System;
 using System.Collections.Generic;
+using System.Net;
 using System.Threading.Tasks;
-using ewads_mvvm.Model.Helpers;
-using System.Collections;
-using System.Data.SqlClient;
 
 namespace ewads_mvvm.Model
 {

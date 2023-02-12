@@ -85,7 +85,10 @@
     <Compile Include="Helpers\Structs\MessageData.cs" />
     <Compile Include="Helpers\Structs\PostData.cs" />
     <Compile Include="Helpers\Structs\UserData.cs" />
+    <Compile Include="Model\Pages\LoginPage.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
+    <Compile Include="ViewModels\LoginPageViewModel.cs" />
+    <Compile Include="ViewModels\MainWindowViewModel.cs" />
     <Compile Include="Views\LoginView.xaml.cs">
       <DependentUpon>LoginView.xaml</DependentUpon>
     </Compile>
