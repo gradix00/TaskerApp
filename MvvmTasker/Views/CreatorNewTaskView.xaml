@@ -1,0 +1,29 @@
+﻿<UserControl x:Class="MvvmTasker.Views.CreatorNewTaskView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MvvmTasker.Views"
+        mc:Ignorable="d"
+        FontSize="20"
+        Height="450" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="80"/>
+            <RowDefinition Height="150"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Row="1" Grid.Column="1" Text="Nazwa zadania" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+        <TextBox Grid.Row="1" Grid.Column="1" Margin="0,42,0,63" />
+        
+        <TextBlock Grid.Row="2" Grid.Column="1" Text="Opis zadania" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+        <TextBox Grid.Row="2" Grid.Column="1" Margin="0,42,0,63" />
+        <Button x:Name="ReturnTaskData" Grid.Row="2" Grid.Column="1" Content="Utwórz" Margin="40,162,40,10"/>
+    </Grid>
+</UserControl>

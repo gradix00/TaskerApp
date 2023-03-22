@@ -1,8 +1,7 @@
 ﻿using Caliburn.Micro;
 using System.Collections.ObjectModel;
-using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Media;
+using System;
 
 namespace MvvmTasker.ViewModels
 {
@@ -12,28 +11,16 @@ namespace MvvmTasker.ViewModels
 
         public ObservableCollection<StackPanel> Tasks
         {
-            get => _tasks; 
-            set 
-            { 
+            get => _tasks;
+            set
+            {
                 _tasks = value;
             }
         }
 
-
-        public void OpenSettings()
+        public void LoadTasks()
         {
-            //MessageBox.Show("works!");
-            StackPanel stc = new StackPanel()
-            {
-                Height = 50,
-                Background = new SolidColorBrush(Colors.CornflowerBlue)
-            };
-            TextBlock txt = new TextBlock()
-            {
-                Text = "nowe zadanie"
-            };
-            stc.Children.Add(txt);
-            _tasks.Add(stc);
+            throw new NotImplementedException();
         }
     }
 }

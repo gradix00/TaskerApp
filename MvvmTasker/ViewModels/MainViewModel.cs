@@ -1,5 +1,5 @@
 ﻿using Caliburn.Micro;
-using System.Windows;
+using System;
 
 namespace MvvmTasker.ViewModels
 {
@@ -23,5 +23,15 @@ namespace MvvmTasker.ViewModels
 			_title = "Tasker";
             ActivateItemAsync(new TasksViewModel());
         }
-	}
+
+        public void OpenSettings()
+        {
+			throw new NotImplementedException();
+        }
+
+		public void OpenCreatorNewTask()
+		{
+			throw new NotImplementedException();
+		}
+    }
 }

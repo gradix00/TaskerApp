@@ -8,6 +8,20 @@
         Title="{Binding Path=Title,Mode=OneWay}"
         MinHeight="350" MinWidth="500" WindowStartupLocation="CenterScreen">
     <Grid>
-        <ContentControl x:Name="ActiveItem" Grid.Column="1" Grid.Row="1"/>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <Button x:Name="OpenSettings" Grid.Column="0" Content="Ustawienia" HorizontalAlignment="Stretch"
+                Height="45"/>
+        <Button x:Name="OpenCreatorNewTask" Grid.Column="1" Content="Nowy task" HorizontalAlignment="Stretch"
+                Height="45"/>
+
+        <ContentControl x:Name="ActiveItem" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2"/>
     </Grid>
 </Window>
