@@ -111,6 +111,7 @@
     </Compile>
     <Compile Include="Helpers\DatabaseProvider.cs" />
     <Compile Include="Helpers\TaskData.cs" />
+    <Compile Include="Helpers\TaskDataItem.cs" />
     <Compile Include="ViewModels\CreatorNewTaskViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\TasksViewModel.cs" />

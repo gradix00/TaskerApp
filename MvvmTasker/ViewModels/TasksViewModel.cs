@@ -10,9 +10,33 @@ namespace MvvmTasker.ViewModels
 {
     public class TasksViewModel : Screen
     {
-        private ObservableCollection<StackPanel> _tasks = new BindableCollection<StackPanel>();
+        private const string _filePath = "C:/Users/50kos/Music/db.db";
+        private ObservableCollection<TaskDataItem> _tasks = new BindableCollection<TaskDataItem>();
+        private string _title;
+        private string _description;
+        private DateTime _creationDate;
 
-        public ObservableCollection<StackPanel> Tasks
+        public DateTime CreationDate
+        {
+            get { return _creationDate; }
+            set { _creationDate = value; }
+        }
+
+        public string Description
+        {
+            get { return _description; }
+            set { _description = value; }
+        }
+
+
+        public string Title
+        {
+            get { return _title; }
+            set { _title = value; }
+        }
+
+
+        public ObservableCollection<TaskDataItem> Tasks
         {
             get => _tasks;
             set
@@ -22,13 +46,15 @@ namespace MvvmTasker.ViewModels
         }
 
         public TasksViewModel()
-        {
+        {          
             LoadTasks();
         }
 
         public void LoadTasks()
         {
-            DatabaseProvider database = new DatabaseProvider("C:/Users/50kos/Music/db.db");
+            _tasks.Clear();
+
+            DatabaseProvider database = new DatabaseProvider(_filePath);
             var loadedData = new string[0];
             try
             {      
@@ -36,7 +62,7 @@ namespace MvvmTasker.ViewModels
             }
             catch (Exception ex) 
             {
-                Tasks.Add(CreateTaskUI(null, "Brak zadań"));
+                Tasks.Add(CreateTaskUI("brak zadań!",null, DateTime.Now));
                 Console.WriteLine(ex.Message); 
             };
 
@@ -48,67 +74,27 @@ namespace MvvmTasker.ViewModels
             }
         }
 
-        private StackPanel CreateTaskUI(string title, string description, DateTime date)
+        public void RemoveTask()
         {
-            StackPanel panel = new StackPanel()
+            DatabaseProvider database = new DatabaseProvider(_filePath);
+            foreach (var task in _tasks)
             {
-                Orientation = Orientation.Horizontal,
-                Background = new SolidColorBrush(Colors.CornflowerBlue),
-                HorizontalAlignment = HorizontalAlignment.Stretch,
-            };
-
-            TextBlock titleBox = new TextBlock()
-            {
-                Text = title,
-                HorizontalAlignment = HorizontalAlignment.Left
-            };
-
-            TextBlock desBox = new TextBlock()
-            {
-                Text = description,
-                HorizontalAlignment = HorizontalAlignment.Center
-            };
-
-            TextBlock dateBox = new TextBlock()
-            {
-                HorizontalAlignment = HorizontalAlignment.Right
-            };
-
-            if (date == null)
-                dateBox.Text = string.Empty;
-            else
-                dateBox.Text = date.ToString();
-
-            panel.Children.Add(titleBox);
-            panel.Children.Add(desBox);
-            panel.Children.Add(dateBox);
-            return panel;
+                if (task.IsSelected)
+                {
+                    database.DeleteData("Title", task.Title, "Tasks");
+                }
+            }
+            LoadTasks();
         }
 
-        private StackPanel CreateTaskUI(string title, string description)
+        private TaskDataItem CreateTaskUI(string title, string description, DateTime date)
         {
-            StackPanel panel = new StackPanel()
+            return new TaskDataItem()
             {
-                Orientation = Orientation.Horizontal,
-                Background = new SolidColorBrush(Colors.CornflowerBlue),
-                HorizontalAlignment = HorizontalAlignment.Stretch,
+                Title = title,
+                Description = description,
+                CreationDate = date
             };
-
-            TextBlock titleBox = new TextBlock()
-            {
-                Text = title,
-                HorizontalAlignment = HorizontalAlignment.Left
-            };
-
-            TextBlock desBox = new TextBlock()
-            {
-                Text = description,
-                HorizontalAlignment = HorizontalAlignment.Center
-            };
-
-            panel.Children.Add(titleBox);
-            panel.Children.Add(desBox);
-            return panel;
         }
     }
 }

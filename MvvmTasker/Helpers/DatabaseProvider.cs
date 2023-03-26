@@ -40,6 +40,54 @@ namespace MvvmTasker.Helpers
         }
 
         /// <summary>
+        /// Delete data by column name (string value)
+        /// </summary>
+        /// <param name="nameColumn"></param>
+        /// <param name="value"></param>
+        /// <param name="table"></param>
+        public void DeleteData(string nameColumn, string value, string table)
+        {
+            _conn.Open();
+            if (_conn.State != System.Data.ConnectionState.Open)
+                return;
+
+            SQLiteCommand cmd = new SQLiteCommand(_conn);
+            cmd.CommandText = $"DELETE FROM {table} WHERE {nameColumn}='{value}'";
+
+            if (cmd.ExecuteNonQuery() > 0)
+            {
+                _conn.Close();
+                return;
+            }
+            _conn.Close();
+            return;
+        }
+
+        /// <summary>
+        /// Delete data by column name (int value)
+        /// </summary>
+        /// <param name="nameColumn"></param>
+        /// <param name="value"></param>
+        /// <param name="table"></param>
+        public void DeleteData(string nameColumn, int value, string table)
+        {
+            _conn.Open();
+            if (_conn.State != System.Data.ConnectionState.Open)
+                return;
+
+            SQLiteCommand cmd = new SQLiteCommand(_conn);
+            cmd.CommandText = $"DELETE FROM {table} WHERE {nameColumn}={value}";
+
+            if (cmd.ExecuteNonQuery() > 0)
+            {
+                _conn.Close();
+                return;
+            }
+            _conn.Close();
+            return;
+        }
+
+        /// <summary>
         /// Load all data from table
         /// </summary>
         /// <param name="column"></param>

@@ -34,13 +34,13 @@ namespace MvvmTasker.ViewModels
             DatabaseProvider database = new DatabaseProvider("C:/Users/50kos/Music/db.db");
 
             var res = database.InsertData("Title, Description, CreationData", $"'{Title}','{Description}', '{DateTime.Now}'", "Tasks");
+            var n = Parent as MainViewModel;
+            n.OpenTasks();
 
             if (res)
                 MessageBox.Show("Stworzono zadanie!");
             else
-                MessageBox.Show("Nie udało się utworzyć zadania!");
-            var n = Parent as MainViewModel;
-            n.OpenTasks();
+                MessageBox.Show("Nie udało się utworzyć zadania!");      
         }
     }
 }

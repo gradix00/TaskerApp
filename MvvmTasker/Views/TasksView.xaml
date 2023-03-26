@@ -26,6 +26,28 @@
         <TextBlock Grid.Column="1" Text="Opis" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"/>
         <TextBlock Grid.Column="2" Text="Data zakończenia" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"/>
 
-        <ListBox ItemsSource="{Binding Path=Tasks, Mode=OneWay}" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Top"/>
+        <ListBox ItemsSource="{Binding Path=Tasks, Mode=OneWay}" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Top">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Background="Orange" Height="50">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+
+                            <CheckBox IsChecked="{Binding IsSelected}" VerticalAlignment="Center"/>
+                            <TextBlock Text="{Binding Title}" Margin="20, 0, 0, 0"/>
+                            <TextBlock Grid.Column="1" Text="{Binding Description}"/>
+                            <TextBlock Grid.Column="2" Text="{Binding CreationDate}"/>
+                            
+                        </Grid>
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <Button Grid.ColumnSpan="3" Grid.Row="1" Height="45" VerticalAlignment="Bottom" Content="Usuń zadanie" x:Name="RemoveTask"/>
     </Grid>
 </UserControl>
