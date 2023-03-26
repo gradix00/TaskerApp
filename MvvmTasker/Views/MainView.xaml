@@ -17,10 +17,10 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
 
-        <Button x:Name="OpenSettings" Grid.Column="0" Content="Ustawienia" HorizontalAlignment="Stretch"
-                Height="45"/>
+        <Button x:Name="OpenTasks" Grid.Column="0" Content="Taski" HorizontalAlignment="Stretch"
+                Height="45" Background="Yellow"/>
         <Button x:Name="OpenCreatorNewTask" Grid.Column="1" Content="Nowy task" HorizontalAlignment="Stretch"
-                Height="45"/>
+                Height="45" Background="Yellow"/>
 
         <ContentControl x:Name="ActiveItem" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2"/>
     </Grid>

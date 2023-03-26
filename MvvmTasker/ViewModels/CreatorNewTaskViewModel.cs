@@ -1,18 +1,20 @@
 ﻿using Caliburn.Micro;
 using MvvmTasker.Helpers;
+using System;
 using System.Windows;
+using System.Data.SQLite;
 
 namespace MvvmTasker.ViewModels
 {
     public class CreatorNewTaskViewModel : Screen
     {
-        private string _name;
+        private string _title;
         private string _description;
 
-        public string Name
+        public string Title
         {
-            get => _name;
-            set { _name = value; }
+            get => _title;
+            set { _title = value; }
         }
 
         public string Description
@@ -21,14 +23,24 @@ namespace MvvmTasker.ViewModels
             set { _description = value; }
         }
 
-        public TaskData ReturnTaskData()
+        public void ReturnTaskData()
         {
-            return new TaskData
+            if (string.IsNullOrEmpty(Title) || string.IsNullOrEmpty(Description))
             {
-                Name = this.Name,
-                Description = this.Description,
-                CreationDate = System.DateTime.Now
-            };
+                MessageBox.Show("Uzupełnij pola!");
+                return;
+            }
+
+            DatabaseProvider database = new DatabaseProvider("C:/Users/50kos/Music/db.db");
+
+            var res = database.InsertData("Title, Description, CreationData", $"'{Title}','{Description}', '{DateTime.Now}'", "Tasks");
+
+            if (res)
+                MessageBox.Show("Stworzono zadanie!");
+            else
+                MessageBox.Show("Nie udało się utworzyć zadania!");
+            var n = Parent as MainViewModel;
+            n.OpenTasks();
         }
     }
 }

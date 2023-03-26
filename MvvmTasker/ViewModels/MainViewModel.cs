@@ -24,14 +24,14 @@ namespace MvvmTasker.ViewModels
             ActivateItemAsync(new TasksViewModel());
         }
 
-        public void OpenSettings()
+        public void OpenTasks()
         {
-			throw new NotImplementedException();
+            ActivateItemAsync(new TasksViewModel());
         }
 
 		public void OpenCreatorNewTask()
 		{
-			throw new NotImplementedException();
+			ActivateItemAsync(new CreatorNewTaskViewModel());
 		}
     }
 }

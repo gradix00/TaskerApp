@@ -20,10 +20,10 @@
         </Grid.RowDefinitions>
 
         <TextBlock Grid.Row="1" Grid.Column="1" Text="Nazwa zadania" HorizontalAlignment="Center" VerticalAlignment="Top"/>
-        <TextBox Grid.Row="1" Grid.Column="1" Margin="0,42,0,63" />
+        <TextBox x:Name="Title" Grid.Row="1" Grid.Column="1" Margin="0,42,0,63" />
         
         <TextBlock Grid.Row="2" Grid.Column="1" Text="Opis zadania" HorizontalAlignment="Center" VerticalAlignment="Top"/>
-        <TextBox Grid.Row="2" Grid.Column="1" Margin="0,42,0,63" />
+        <TextBox x:Name="Description" Grid.Row="2" Grid.Column="1" Margin="0,42,0,63" />
         <Button x:Name="ReturnTaskData" Grid.Row="2" Grid.Column="1" Content="Utwórz" Margin="40,162,40,10"/>
     </Grid>
 </UserControl>
