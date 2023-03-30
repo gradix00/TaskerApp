@@ -38,6 +38,11 @@
                                 <ColumnDefinition />
                             </Grid.ColumnDefinitions>
 
+                            <Border Grid.Column="0" BorderBrush="White" BorderThickness="1"/>
+                            <Border Grid.Column="1" BorderBrush="White" BorderThickness="1"/>
+                            <Border Grid.Column="2" BorderBrush="White" BorderThickness="1"/>
+                            <Border Grid.Column="3" BorderBrush="White" BorderThickness="1"/>
+                            
                             <CheckBox IsChecked="{Binding IsSelected}" VerticalAlignment="Center"/>
                             <TextBlock Text="{Binding Title}" Margin="20, 0, 0, 0"/>
                             <TextBlock Grid.Column="1" Text="{Binding Description}"/>

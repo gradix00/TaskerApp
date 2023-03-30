@@ -8,6 +8,9 @@ namespace MvvmTasker.ViewModels
 {
     public class CreatorNewTaskViewModel : Screen
     {
+        private static string _filePath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\TaskerData";
+        private const string _fileName = "Tasker.db";
+
         private string _title;
         private string _description;
 
@@ -31,9 +34,9 @@ namespace MvvmTasker.ViewModels
                 return;
             }
 
-            DatabaseProvider database = new DatabaseProvider("C:/Users/50kos/Music/db.db");
+            DatabaseProvider database = new DatabaseProvider(_filePath, _fileName);
 
-            var res = database.InsertData("Title, Description, CreationData", $"'{Title}','{Description}', '{DateTime.Now}'", "Tasks");
+            var res = database.InsertData("Title, Description, CreationDate", $"'{Title}','{Description}', '{DateTime.Now}'", "Tasks");
             var n = Parent as MainViewModel;
             n.OpenTasks();
 

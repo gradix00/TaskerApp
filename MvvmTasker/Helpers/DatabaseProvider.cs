@@ -2,16 +2,76 @@
 using System.Collections.Generic;
 using System;
 using System.Windows;
+using System.Xml.Linq;
+using System.IO;
 
 namespace MvvmTasker.Helpers
 {
+    public enum ColumnType
+    {
+        INT,
+        FLOAT,
+        TEXT,
+        DATETIME,
+        VARCHAR
+    }
+
     public class DatabaseProvider
     {
         SQLiteConnection _conn;
+        private string _filePath;
 
-        public DatabaseProvider(string filePath)
+        public DatabaseProvider(string filePath, string databaseName)
         {
-            _conn = new SQLiteConnection("URI=file:" + filePath);
+            _filePath = filePath;
+            _conn = new SQLiteConnection("URI=file:" + $"{filePath}\\{databaseName}");
+        }
+        
+        /// <summary>
+        /// Create database
+        /// </summary>
+        /// <param name="name"></param>
+        public void CreateDatabase(string name)
+        {
+            if (!Directory.Exists(_filePath))
+                Directory.CreateDirectory(_filePath);
+
+            if (!File.Exists($"{_filePath}\\{name}"))
+                SQLiteConnection.CreateFile($"{_filePath}\\{name}");
+        }
+
+        /// <summary>
+        /// Create table in database
+        /// </summary>
+        /// <param name="name"></param>
+        public void CreateTable(string name, string columns)
+        {
+            _conn.Open();
+            if(_conn.State != System.Data.ConnectionState.Open)
+                return;
+
+            SQLiteCommand cmd = new SQLiteCommand(_conn);
+            cmd.CommandText = $"CREATE TABLE IF NOT EXISTS {name}({columns})";
+            cmd.ExecuteNonQuery();
+            _conn.Close();
+        }
+
+        /// <summary>
+        /// Adding column in table
+        /// </summary>
+        /// <param name="table"></param>
+        /// <param name="columnName"></param>
+        /// <param name="columnType"></param>
+        public void AddColumn(string table, string columnName, ColumnType columnType)
+        {
+            _conn.Open();
+            if (_conn.State != System.Data.ConnectionState.Open)
+                return;
+
+            SQLiteCommand cmd = new SQLiteCommand(_conn);
+            cmd.CommandText = $"ALTER TABLE {table} ADD COLUMN {columnName} {columnName}";
+            cmd.ExecuteNonQuery();
+            _conn.Close();
         }
 
         /// <summary>
