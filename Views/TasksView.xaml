@@ -57,7 +57,7 @@
         <Button Grid.ColumnSpan="3" 
                 Grid.Row="1" 
                 Style="{DynamicResource RoundedButton}"
-                Background="CornflowerBlue"
+                Background="LightCoral"
                 Foreground="White"
                 Height="45" 
                 VerticalAlignment="Bottom" 
