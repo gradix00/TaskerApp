@@ -110,6 +110,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Helpers\DatabaseProvider.cs" />
+    <Compile Include="Helpers\InfoMessage.cs" />
     <Compile Include="Helpers\TaskData.cs" />
     <Compile Include="Helpers\TaskDataItem.cs" />
     <Compile Include="ViewModels\CreatorNewTaskViewModel.cs" />

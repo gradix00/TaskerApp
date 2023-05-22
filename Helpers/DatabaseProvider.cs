@@ -178,11 +178,11 @@ namespace MvvmTasker.Helpers
                     var type = reader.GetFieldType(i);
 
                     if(type == typeof(string))
-                        data += reader.GetString(i) + ',';
+                        data += reader.GetString(i) + '|';
                     else if(type == typeof(int))
-                        data += reader.GetString(i) + ',';
+                        data += reader.GetString(i) + '|';
                     else if(type == typeof(DateTime))
-                        data += reader.GetString(i) + ',';
+                        data += reader.GetString(i) + '|';
                 }
                 res.Add(data);
             }

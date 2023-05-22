@@ -2,8 +2,8 @@
 using MvvmTasker.Helpers;
 using System;
 using System.Collections.ObjectModel;
-using System.IO;
 using System.Windows;
+using Message = MvvmTasker.Helpers.Message;
 
 namespace MvvmTasker.ViewModels
 {
@@ -71,13 +71,14 @@ namespace MvvmTasker.ViewModels
             }
             catch (Exception ex)
             {
+                MessageBox.Show(InfoMessage.GetMessage[Message.NoSelectedTasks]);
                 Tasks.Add(CreateTaskUI("brak zadań!", null, DateTime.Now));
                 Console.WriteLine(ex.Message);
             };
 
             foreach (var task in loadedData)
             {
-                string[] data = task.Split(',');
+                string[] data = task.Split('|');
                 var newTask = CreateTaskUI(data[0], data[1], DateTime.Parse(data[2]));
                 Tasks.Add(newTask);
             }
@@ -85,14 +86,20 @@ namespace MvvmTasker.ViewModels
 
         public void RemoveTask()
         {
+            int selectedTask = 0;
+
             DatabaseProvider database = new DatabaseProvider(_filePath, _fileName);
             foreach (var task in _tasks)
             {
                 if (task.IsSelected)
                 {
                     database.DeleteData("Title", task.Title, "Tasks");
+                    selectedTask++;
                 }
             }
+
+            if (selectedTask == 0)
+                MessageBox.Show(InfoMessage.GetMessage[Message.NoSelectedTasks]);
             LoadTasks();
         }
 

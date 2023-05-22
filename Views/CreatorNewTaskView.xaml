@@ -14,16 +14,47 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
             <RowDefinition Height="80"/>
+            <RowDefinition Height="40"/>
             <RowDefinition Height="150"/>
-            <RowDefinition/>
+            <RowDefinition Height="50"/>
         </Grid.RowDefinitions>
 
-        <TextBlock Grid.Row="1" Grid.Column="1" Text="Nazwa zadania" HorizontalAlignment="Center" VerticalAlignment="Top"/>
-        <TextBox x:Name="Title" Grid.Row="1" Grid.Column="1" Margin="0,42,0,63" />
-        
-        <TextBlock Grid.Row="2" Grid.Column="1" Text="Opis zadania" HorizontalAlignment="Center" VerticalAlignment="Top"/>
-        <TextBox x:Name="Description" Grid.Row="2" Grid.Column="1" Margin="0,42,0,63" />
-        <Button x:Name="ReturnTaskData" Grid.Row="2" Grid.Column="1" Content="Utwórz" Margin="40,162,40,10"/>
+        <TextBlock Grid.Column="1" 
+                   Text="Nazwa zadania" 
+                   FontWeight="Bold"
+                   HorizontalAlignment="Center" 
+                   VerticalAlignment="Top"
+                   Foreground="CornflowerBlue"/>
+        <TextBox Grid.Row="1"
+                 Grid.Column="1"
+                 Style="{DynamicResource RoundedTextBox}"
+                 Background="CornflowerBlue"
+                 Foreground="White"
+                 x:Name="Title"
+                 Margin="5"/>
+
+        <TextBlock Grid.Row="2" Grid.Column="1" 
+                   Text="Opis zadania" 
+                   FontWeight="Bold"
+                   HorizontalAlignment="Center" 
+                   VerticalAlignment="Top"
+                   Foreground="CornflowerBlue"/>
+
+        <TextBox Grid.Row="3"
+                 Grid.Column="1"
+                 Style="{DynamicResource RoundedTextBox}" x:Name="Description" 
+                 Background="CornflowerBlue"
+                 Foreground="White"
+                 Margin="5"/>
+
+        <Button Grid.Row="5"
+                Grid.Column="1"
+                Style="{DynamicResource RoundedButton}"
+                x:Name="ReturnTaskData" Content="Utwórz"
+                Background="CornflowerBlue"
+                Foreground="White"
+                Margin="4"/>
     </Grid>
 </UserControl>

@@ -2,7 +2,7 @@
 using MvvmTasker.Helpers;
 using System;
 using System.Windows;
-using System.Data.SQLite;
+using Message = MvvmTasker.Helpers.Message;
 
 namespace MvvmTasker.ViewModels
 {
@@ -30,7 +30,7 @@ namespace MvvmTasker.ViewModels
         {
             if (string.IsNullOrEmpty(Title) || string.IsNullOrEmpty(Description))
             {
-                MessageBox.Show("Uzupełnij pola!");
+                MessageBox.Show(InfoMessage.GetMessage[Message.FieldsEmpty]);
                 return;
             }
 
@@ -41,9 +41,9 @@ namespace MvvmTasker.ViewModels
             n.OpenTasks();
 
             if (res)
-                MessageBox.Show("Stworzono zadanie!");
+                MessageBox.Show(InfoMessage.GetMessage[Message.SuccesAddTask]);
             else
-                MessageBox.Show("Nie udało się utworzyć zadania!");      
+                MessageBox.Show(InfoMessage.GetMessage[Message.FailedAddTask]);
         }
     }
 }
