@@ -1,8 +1,6 @@
-﻿using System.Data.SQLite;
+﻿using System;
 using System.Collections.Generic;
-using System;
-using System.Windows;
-using System.Xml.Linq;
+using System.Data.SQLite;
 using System.IO;
 
 namespace MvvmTasker.Helpers
@@ -26,7 +24,7 @@ namespace MvvmTasker.Helpers
             _filePath = filePath;
             _conn = new SQLiteConnection("URI=file:" + $"{filePath}\\{databaseName}");
         }
-        
+
         /// <summary>
         /// Create database
         /// </summary>
@@ -47,7 +45,7 @@ namespace MvvmTasker.Helpers
         public void CreateTable(string name, string columns)
         {
             _conn.Open();
-            if(_conn.State != System.Data.ConnectionState.Open)
+            if (_conn.State != System.Data.ConnectionState.Open)
                 return;
 
             SQLiteCommand cmd = new SQLiteCommand(_conn);
@@ -173,22 +171,22 @@ namespace MvvmTasker.Helpers
             while (reader.Read())
             {
                 string data = string.Empty;
-                for(int i = 0; i < reader.FieldCount; i++)
+                for (int i = 0; i < reader.FieldCount; i++)
                 {
                     var type = reader.GetFieldType(i);
 
-                    if(type == typeof(string))
+                    if (type == typeof(string))
                         data += reader.GetString(i) + '|';
-                    else if(type == typeof(int))
+                    else if (type == typeof(int))
                         data += reader.GetString(i) + '|';
-                    else if(type == typeof(DateTime))
+                    else if (type == typeof(DateTime))
                         data += reader.GetString(i) + '|';
                 }
                 res.Add(data);
             }
 
             _conn.Close();
-            return res.ToArray();          
+            return res.ToArray();
         }
     }
 }
